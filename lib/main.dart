@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/core/app_router.dart';
 
 void main() {
-  runApp(const HomeView());
+  runApp(RicAndMortyApp(appRouter: AppRouter()));
 }
 
-class HomeView extends StatelessWidget {
-  const HomeView({super.key});
+class RicAndMortyApp extends StatelessWidget {
+  final AppRouter appRouter;
+  const RicAndMortyApp({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
+      onGenerateRoute: appRouter.generateRoute,
 
     );
   }
