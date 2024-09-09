@@ -1,3 +1,6 @@
+
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:rick_and_morty/data/models/chracters_model.dart';
@@ -7,13 +10,14 @@ part 'chracters_state.dart';
 
 class ChractersCubit extends Cubit<ChractersState> {
   final ChractersRepository chractersRepository;
-  late List<ChractersModel> characters;
+  List<ChractersModel> characters = [];
   ChractersCubit(this.chractersRepository) : super(ChractersInitial());
 
-  List<ChractersModel> getAllCharacters() {
-    chractersRepository.getAllChracters().then((characters) {
-      this.characters = characters;
+  Future<List<ChractersModel>> getAllCharacters() async {
+    await chractersRepository.getAllChracters().then((characters) {
+      log('${characters.length}');
       emit(CharactersLoaded(chracters: characters));
+      this.characters = characters;
     });
     return characters;
   }

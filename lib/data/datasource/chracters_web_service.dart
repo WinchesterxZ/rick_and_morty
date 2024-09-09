@@ -18,9 +18,10 @@ class ChractersWebService {
   Future<List<dynamic>> getAllChracters() async {
     try {
       Response response = await dio.get(AppStrings.endpoint);
-      log(response.data);
-      return response.data;
+      log('${response.statusCode}');
+      return response.data['results'];
     } catch (e) {
+      log("hello");
       log(e.toString());
       return [];
     }
