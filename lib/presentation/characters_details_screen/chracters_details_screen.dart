@@ -11,6 +11,7 @@ class ChractersDetailsScreen extends StatelessWidget {
       pinned: true,
       stretch: true,
       backgroundColor: const Color(0xff262626),
+      iconTheme: const IconThemeData(color: Colors.white),
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         title: Text(

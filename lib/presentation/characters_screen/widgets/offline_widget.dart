@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 Widget buildOfflineWidget() {
@@ -9,15 +8,18 @@ Widget buildOfflineWidget() {
     children: [
       Image(
         image: AssetImage('assets/images/no_internet.png'),
-        width: 100,
-        height: 100,
+        width: 300,
+        height: 300,
       ),
-      Text(
-        'No Internet, Please Check Your Internet And Try Again. ',
-        maxLines: 2,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
-            color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+        child: Text(
+          'No Internet, Please Check Your Internet And Try Again. ',
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(
+              color: Colors.black, fontSize: 22, fontWeight: FontWeight.bold),
+        ),
       )
     ],
   );

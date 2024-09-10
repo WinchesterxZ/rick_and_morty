@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_offline/flutter_offline.dart';
@@ -18,6 +20,8 @@ class _CharactersScreenState extends State<CharactersScreen> {
   final _searchTextController = TextEditingController();
   late List<ChractersModel> searchedCharacters;
   bool _isSearching = false;
+  bool _isConnected = true;
+
   Widget _buildSearchTextField(List<ChractersModel> allCharacters) {
     return buildSearchTextField(allCharacters, _searchTextController,
         onBackPressed: () {
@@ -48,10 +52,13 @@ class _CharactersScreenState extends State<CharactersScreen> {
   void initState() {
     super.initState();
     BlocProvider.of<ChractersCubit>(context).getAllCharacters();
+
   }
 
   Widget buildBlockWidget(ChractersState state) {
-    if (state is CharactersLoaded) {
+    if (state is ChractersNoConnection) {
+      return buildOfflineWidget();
+    } else if (state is CharactersLoaded) {
       return buildLoadedList(state.chracters);
     } else {
       return showProgressIndicator();
@@ -106,9 +113,11 @@ class _CharactersScreenState extends State<CharactersScreen> {
                   ? [
                       IconButton(
                           onPressed: () {
-                            setState(() {
-                              _isSearching = true;
-                            });
+                            if (_isConnected) {
+                              setState(() {
+                                _isSearching = true;
+                              });
+                            }
                           },
                           icon: const Icon(
                             Icons.search,
@@ -123,12 +132,10 @@ class _CharactersScreenState extends State<CharactersScreen> {
                 List<ConnectivityResult> connectivity,
                 Widget child,
               ) {
-                final bool connected =
-                    !connectivity.contains(ConnectivityResult.none);
+                _isConnected = !connectivity.contains(ConnectivityResult.none);
 
-                return connected
-                    ? buildBlockWidget(state)
-                    : buildOfflineWidget();
+
+                return _isConnected ? buildBlockWidget(state) : buildOfflineWidget();
               },
               child: showProgressIndicator(),
             ));
