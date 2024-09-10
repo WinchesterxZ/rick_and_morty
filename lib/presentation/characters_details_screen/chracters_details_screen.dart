@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/data/models/chracters_model.dart';
 
@@ -11,6 +10,7 @@ class ChractersDetailsScreen extends StatelessWidget {
       expandedHeight: 600,
       pinned: true,
       stretch: true,
+      backgroundColor: const Color(0xff262626),
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         title: Text(
@@ -44,68 +44,70 @@ class ChractersDetailsScreen extends StatelessWidget {
         buildSliverAppBar(),
         SliverList(
             delegate: SliverChildListDelegate([
-          Column(
+          Padding(
+            padding: const EdgeInsets.only(top: 15),
+            child: ListTile(
+              leading: const Icon(
+                Icons.contact_emergency,
+                color: Color.fromARGB(255, 0, 116, 174),
+                size: 35,
+              ),
+              title: Text(chractersModel.origin.name),
+            ),
+          ),
+          Row(
             children: [
-              ListTile(
-                leading: const Icon(
-                  Icons.contact_emergency,
-                  color: Color.fromARGB(255, 0, 116, 174),
-                  size: 35,
-                ),
-                title: Text(chractersModel.origin.name),
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: ListTile(
-                        leading: const Icon(
-                          Icons.person_pin_rounded,
-                          color: Colors.blue,
-                          size: 35,
-                        ),
-                        title: Text(chractersModel.species)),
-                  ),
-                  Expanded(
-                      flex: 1,
-                      child: ListTile(
-                        leading: const Icon(
-                          Icons.hub,
-                          color: Colors.cyan,
-                          size: 35,
-                        ),
-                        title: Text(chractersModel.gender),
-                      )),
-                ],
-              ),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: ListTile(
-                      leading: const Icon(
-                        Icons.location_on_rounded,
-                        color: Colors.red,
-                        size: 35,
-                      ),
-                      title: Text(chractersModel.location.name),
+              Expanded(
+                flex: 1,
+                child: ListTile(
+                    leading: const Icon(
+                      Icons.person_pin_rounded,
+                      color: Colors.blue,
+                      size: 35,
                     ),
-                  ),
-                  Expanded(
-                      flex: 1,
-                      child: ListTile(
-                        leading: Icon(
-                          Icons.circle,
-                          color: chractersModel.status == 'Alive'
-                              ? Colors.green
-                              : Colors.red,
-                          size: 35,
-                        ),
-                        title: Text(chractersModel.status),
-                      )),
-                ],
+                    title: Text(chractersModel.species)),
               ),
+              Expanded(
+                  flex: 1,
+                  child: ListTile(
+                    leading: const Icon(
+                      Icons.hub,
+                      color: Colors.cyan,
+                      size: 35,
+                    ),
+                    title: Text(chractersModel.gender),
+                  )),
             ],
+          ),
+          Row(
+            children: [
+              Expanded(
+                flex: 1,
+                child: ListTile(
+                  leading: const Icon(
+                    Icons.location_on_rounded,
+                    color: Colors.red,
+                    size: 35,
+                  ),
+                  title: Text(chractersModel.location.name),
+                ),
+              ),
+              Expanded(
+                  flex: 1,
+                  child: ListTile(
+                    leading: Icon(
+                      Icons.circle,
+                      color: chractersModel.status == 'Alive'
+                          ? Colors.green
+                          : Colors.red,
+                      size: 35,
+                    ),
+                    title: Text(chractersModel.status),
+                  )),
+            ],
+          ),
+          const SizedBox(
+            height: 500,
           ),
         ]))
       ],

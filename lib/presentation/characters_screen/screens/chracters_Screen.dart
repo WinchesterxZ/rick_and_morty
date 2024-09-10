@@ -1,10 +1,10 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_offline/flutter_offline.dart';
 import 'package:rick_and_morty/bussiness_logic/cubit/chracters_cubit.dart';
 import 'package:rick_and_morty/data/models/chracters_model.dart';
 import 'package:rick_and_morty/presentation/characters_screen/widgets/chracter_item.dart';
+import 'package:rick_and_morty/presentation/characters_screen/widgets/offline_widget.dart';
 import 'package:rick_and_morty/presentation/characters_screen/widgets/search_textfield.dart';
 
 class CharactersScreen extends StatefulWidget {
@@ -52,7 +52,6 @@ class _CharactersScreenState extends State<CharactersScreen> {
 
   Widget buildBlockWidget(ChractersState state) {
     if (state is CharactersLoaded) {
-      log('state loaded');
       return buildLoadedList(state.chracters);
     } else {
       return showProgressIndicator();
@@ -95,7 +94,7 @@ class _CharactersScreenState extends State<CharactersScreen> {
         return Scaffold(
             backgroundColor: const Color(0xffE0E0E0),
             appBar: AppBar(
-              backgroundColor: Color(0xff262626),
+              backgroundColor: const Color(0xff262626),
               title: _isSearching
                   ? _buildSearchTextField(
                       (state is CharactersLoaded) ? state.chracters : [])
@@ -118,7 +117,21 @@ class _CharactersScreenState extends State<CharactersScreen> {
                     ]
                   : null,
             ),
-            body: buildBlockWidget(state));
+            body: OfflineBuilder(
+              connectivityBuilder: (
+                BuildContext context,
+                List<ConnectivityResult> connectivity,
+                Widget child,
+              ) {
+                final bool connected =
+                    !connectivity.contains(ConnectivityResult.none);
+
+                return connected
+                    ? buildBlockWidget(state)
+                    : buildOfflineWidget();
+              },
+              child: showProgressIndicator(),
+            ));
       },
     );
   }

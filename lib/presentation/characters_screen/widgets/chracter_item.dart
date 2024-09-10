@@ -1,3 +1,4 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/util/app_strings.dart';
@@ -20,7 +21,7 @@ class ChracterItem extends StatelessWidget {
             margin: const EdgeInsets.fromLTRB(8, 8, 8, 8),
             padding: const EdgeInsetsDirectional.all(4),
             decoration: BoxDecoration(
-              color: Color(0xff262626),
+              color: const Color(0xff262626),
               borderRadius: BorderRadius.circular(8),
               // boxShadow: [
               //   BoxShadow(

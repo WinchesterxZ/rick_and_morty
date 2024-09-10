@@ -10,8 +10,8 @@ class ChractersWebService {
     BaseOptions options = BaseOptions(
         baseUrl: AppStrings.baseUrl,
         receiveDataWhenStatusError: true,
-        connectTimeout: const Duration(seconds: 20),
-        receiveTimeout: const Duration(seconds: 20));
+        connectTimeout: const Duration(seconds: 10),
+        receiveTimeout: const Duration(seconds: 10));
     dio = Dio(options);
   }
 
@@ -21,7 +21,6 @@ class ChractersWebService {
       log('${response.statusCode}');
       return response.data['results'];
     } catch (e) {
-      log("hello");
       log(e.toString());
       return [];
     }

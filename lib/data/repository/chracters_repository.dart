@@ -1,3 +1,4 @@
+
 import 'package:rick_and_morty/data/datasource/chracters_web_service.dart';
 import 'package:rick_and_morty/data/models/chracters_model.dart';
 
@@ -8,9 +9,6 @@ class ChractersRepository {
 
   Future<List<ChractersModel>> getAllChracters() async {
     final characters = await chractersWebService.getAllChracters();
-    print(characters
-        .map((character) => ChractersModel.fromJson(character))
-        .toList());
     return characters
         .map((character) => ChractersModel.fromJson(character))
         .toList();
