@@ -2,16 +2,22 @@
 
 A new Flutter project.
 
+API 
+DIO
+Grid List View With the Ability to Search 
+Flutter_offline
+sliver app bar 
+network cached image 
+bloc and cubit 
+
 ## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+https://github.com/user-attachments/assets/f8043e60-4c37-408a-8ba2-57d1ee3955dd
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# rick_and_morty
+![2](https://github.com/user-attachments/assets/33ece484-7465-4ddb-9f86-ec12bc2665fe)
+![3](https://github.com/user-attachments/assets/dded4043-5b52-4770-aeac-ec0da4d84555)
+![4](https://github.com/user-attachments/assets/3e2750d9-360e-4579-bfbc-3cb8720fa87e)
+![5](https://github.com/user-attachments/assets/001491e6-a014-4f32-8f33-1d6d28fe953d)
+![1](https://github.com/user-attachments/assets/c7c425eb-bb6d-4997-99f1-f65cb136cc48)
